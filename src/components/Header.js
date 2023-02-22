@@ -1,8 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { SUGGESTIONS_API } from "../utils/constants";
+
 
 const Header = () => {
+
+  const [searchQuery, setSearchQuery]= useState("")
+  const [showSuggestions, setShowSuggestions]= useState(true)
+  const [suggestions, setSuggestions]= useState([])
+  console.log(searchQuery)
+
+  const getSuggestions= async()=>{
+    const data= await fetch (SUGGESTIONS_API + searchQuery)
+    const json= await data.json()
+    setSuggestions(json[1])
+    console.log(json[1])
+  }
+ 
+  useEffect(()=>{
+    const timer= setTimeout(()=>(getSuggestions()),200)
+
+   return(()=>clearTimeout(timer)
+   )
+  }, [searchQuery])
 
   const dispatch= useDispatch()
   const toggleMenuHandler=()=>{
@@ -25,13 +46,16 @@ const Header = () => {
             </a>
           </span>
         </div>
+        <div className="flex flex-col">
         <div className=" flex items-center">
           <input
             placeholder="Search"
-            className=" rounded-l-full w-[600px] p-2 border outline-none "
+            className=" rounded-l-full w-[15rem] md:w-[25rem] p-2 border outline-none "
             type="text"
-            name=""
-            id=""
+           value={searchQuery}
+            onChange={(e)=>setSearchQuery(e.target.value)}
+            onFocus={()=>setShowSuggestions(true)}
+            onBlur={()=>setShowSuggestions(false)}
           />
 
           <span>
@@ -41,6 +65,12 @@ const Header = () => {
             <i className="fa-solid fa-microphone ml-4"></i>
           </span>
         </div>
+        {showSuggestions && <ul className="w-[14.5rem] shadow-lg rounded ml-2  mt-11 py-2 p-1 z-50 bg-white absolute">
+       {suggestions.map(suggestion=> <li className="text-xs p-1  rounded shadow-sm">{suggestion}</li>)} 
+          
+        </ul>
+}
+        </div>
         <div className="flex mx-2">
           <span>
             <i className="fa-solid fa-video mx-2"></i>
@@ -48,9 +78,8 @@ const Header = () => {
           <span>
             <i className="fa-regular fa-bell mx-2"></i>
           </span>
-          <span>
-            <i className="fa-solid fa-circle-user mx-2"></i>
-          </span>
+            <img className="w-7 rounded-full mx-2" src="https://yt3.ggpht.com/yti/AHXOFjXzYc-9Tkv7Sg-wO65yuoEhXM1J2pQxdL4jFI7zJHs=s88-c-k-c0x00ffffff-no-rj-mo" alt="" />
+       
         </div>
       </div>
    

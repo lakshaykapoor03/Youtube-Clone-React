@@ -4,6 +4,7 @@ import { YOUTUBE_API } from "../utils/constants";
 import ButtonList from "./ButtonList";
 import SideBar from "./SideBar";
 import { Link } from "react-router-dom";
+import { AdVideoCard } from "./VideoCard";
 
 function VideoContainer() {
   const [videos, setVideos] = useState([]);
@@ -29,8 +30,9 @@ function VideoContainer() {
             <ButtonList />
           </div>
           <div className="flex flex-wrap gap-5 ">
+        {   videos[0] && <AdVideoCard info={videos[10]}/>}
             {videos.map((item, idx) => {
-              return <Link to={"/watch?v="+item.id}><VideoCard key={item.id} info={item} />
+              return <Link  key={item.id} to={"/watch?v="+item.id}><VideoCard info={item} />
               </Link>
 
             })}
