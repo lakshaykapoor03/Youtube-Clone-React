@@ -5,7 +5,8 @@ import { closeMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 import { API_KEY } from "../utils/constants";
 import VideoDetails from "./VideoDetails";
-import Comments from "./Comments";
+import Comments from "./CommentsContainer";
+import Header from "./Header";
 
 const WatchPage = () => {
 
@@ -40,6 +41,7 @@ const WatchPage = () => {
 
   return (
     <div>
+      <Header/>
     <div className="flex">
       <SideBar />
       <iframe

@@ -1,5 +1,5 @@
 import React from 'react'
-import Comments from './Comments';
+import CommentsContainer from './CommentsContainer';
 // import { useSearchParams } from "react-router-dom";
 // import { API_KEY } from "../utils/constants";
 // import { useState, useEffect } from 'react';
@@ -35,8 +35,7 @@ console.log(snippet, statistics);
       </div>
       <div className="text-base mx-4 my-4">
       {statistics.commentCount} Comments 
-    {/* <Comments/> */}
-        
+      <CommentsContainer/>
       </div>
 
     </div>

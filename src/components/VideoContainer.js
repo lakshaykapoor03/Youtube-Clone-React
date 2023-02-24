@@ -5,6 +5,7 @@ import ButtonList from "./ButtonList";
 import SideBar from "./SideBar";
 import { Link } from "react-router-dom";
 import { AdVideoCard } from "./VideoCard";
+import Header from "./Header";
 
 function VideoContainer() {
   const [videos, setVideos] = useState([]);
@@ -22,7 +23,8 @@ function VideoContainer() {
 
   // if (!isMenuOpen) return null;
   return (
-
+<>
+<Header/>
       <div className="flex mx-4 gap-10 mt-4">
         <SideBar />
         <div className="flex flex-col gap-28 md:gap-10">
@@ -39,6 +41,7 @@ function VideoContainer() {
           </div>
         </div>
       </div>
+      </>
     
   );
 }
