@@ -22,12 +22,12 @@ const {viewCount}= statistics
   )
 }
 
-export const AdVideoCard=({info})=>{
-return(
-<div className="border border-red-900 p-2 outline-dashed">
-  <VideoCard info={info}/>
-  </div>
-)
-}
+// export const AdVideoCard=({info})=>{
+// return(
+// <div className="border border-red-900 p-2 outline-dashed">
+//   <VideoCard info={info}/>
+//   </div>
+// )
+// }
 
 export default VideoCard
