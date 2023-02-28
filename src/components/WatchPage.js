@@ -7,6 +7,7 @@ import { API_KEY } from "../utils/constants";
 import VideoDetails from "./VideoDetails";
 import Comments from "./CommentsContainer";
 import Header from "./Header";
+import LiveChat from "./LiveChat";
 
 const WatchPage = () => {
 
@@ -42,7 +43,7 @@ const WatchPage = () => {
   return (
     <div>
       <Header/>
-    <div className="flex">
+    <div className="flex w-full">
       <SideBar />
       <iframe
       className="px-5"
@@ -55,6 +56,9 @@ const WatchPage = () => {
         allowFullScreen
       
       ></iframe>
+      <div className="">
+        <LiveChat/>
+      </div>
     </div>
     <div>
       {videoData.map((data)=><VideoDetails key={data.id} videoData= {data}/>)}</div>

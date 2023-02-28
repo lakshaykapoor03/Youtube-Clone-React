@@ -11,7 +11,7 @@ function VideoContainer() {
   const [videos, setVideos] = useState([]);
 
   const videoCardData = async () => {
-    const data = await fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=50&chart=mostPopular&regionCode=IN&key=AIzaSyDESPhep_H6aeZMnLhEBeXycFuamufh3Fg");
+    const data = await fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=50&chart=mostPopular&regionCode=IN&key=AIzaSyAWWnH9A63525B5szFKwle0bcyLAHZjmCU");
     const json = await data.json();
     setVideos(json.items);
     console.log(json.items);
