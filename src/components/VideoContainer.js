@@ -22,8 +22,8 @@ function VideoContainer() {
   }, []);
 
   // if (!isMenuOpen) return null;
-  return (
-<>
+  return ( 
+    <>
 <Header/>
       <div className="flex mx-4 gap-10 mt-4">
         <SideBar />
