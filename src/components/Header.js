@@ -67,7 +67,7 @@ const Header = () => {
             <ul className="w-[14.5rem] shadow-lg rounded ml-2  mt-11 py-2 p-1 z-50 bg-white absolute">
               {suggestions.map((suggestion,idx) => {
                 return (
-                 <Link kry={idx} to={"/results"}><li className="text-xs p-1  rounded shadow-sm" >
+                 <Link key={idx} to={"/results?q="+ suggestion}><li className="text-xs p-1  rounded shadow-sm" >
                       {suggestion}
                     </li>
                     </Link>

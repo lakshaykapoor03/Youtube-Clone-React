@@ -3,18 +3,34 @@ import { useSelector, useDispatch } from "react-redux";
 import {useState, useEffect } from "react";
 import { closeMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
-import { API_KEY } from "../utils/constants";
+import { API_KEY, COMMENTS_API } from "../utils/constants";
 import VideoDetails from "./VideoDetails";
 import Comments from "./CommentsContainer";
 import Header from "./Header";
 import LiveChat from "./LiveChat";
 
 const WatchPage = () => {
-
-
-
   const [videoData, setVideoData]= useState([])
- const [commentList,setCommentlist]= useState([])
+  const [commentList,setCommentList]= useState([])
+
+  const [params] = useSearchParams();
+
+  const getComments = async () => {
+    const data = await fetch(
+      COMMENTS_API + params.get("v") + "&key=" + API_KEY
+    );
+    const json = await data.json();
+    setCommentList(json?.items);
+  };
+
+
+  useEffect(() => {
+    getComments();
+    
+  }, []);
+
+
+ 
 
   const getVideoDetails= async()=>{
     const data= await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${searchParams.get("v")}&key=`+ API_KEY)
@@ -23,12 +39,12 @@ const WatchPage = () => {
     console.log(json.items)
   }
 
-  const getComments= async()=>{
-    const data= await fetch ("https://youtube.googleapis.com/youtube/v3/comments?part=snippet&parentId=UgzDE2tasfmrYLyNkGt4AaABAg&key="+API_KEY)
-    const json= await data.json()
-    console.log(json?.items)
-    setCommentlist(json.items)
-}
+//   const getComments= async()=>{
+//     const data= await fetch ("https://youtube.googleapis.com/youtube/v3/comments?part=snippet&parentId=UgzDE2tasfmrYLyNkGt4AaABAg&key="+API_KEY)
+//     const json= await data.json()
+//     console.log(json?.items)
+//     setCommentlist(json.items)
+// }
 
   const [searchParams] = useSearchParams();
   console.log(searchParams.get("v"));
@@ -62,7 +78,25 @@ const WatchPage = () => {
     </div>
     <div>
       {videoData.map((data)=><VideoDetails key={data.id} videoData= {data}/>)}</div>
+      
       {/* {commentList.map((comment)=><Comments comment={comment}/>)} */}
+
+      <div>
+        <h1 className="font-bold text-3xl m-2 p-2">Comments:</h1>
+        {commentList.map((comment) => (
+          <div key={comment.id} className="flex items-center m-2 p-2">
+            <img
+              className="w-7 rounded-full mx-2"
+              src="https://yt3.ggpht.com/yti/AHXOFjXzYc-9Tkv7Sg-wO65yuoEhXM1J2pQxdL4jFI7zJHs=s88-c-k-c0x00ffffff-no-rj-mo"
+              alt=""
+            />
+            <h1 className="text-md" >
+              {comment?.snippet?.topLevelComment?.snippet?.textDisplay}
+            </h1>
+          </div>
+        ))}
+      </div>
+    
     </div>
   );
 };

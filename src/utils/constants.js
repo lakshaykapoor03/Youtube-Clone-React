@@ -7,3 +7,6 @@ export const VIDEO_DATA_API= "https://youtube.googleapis.com/youtube/v3/videos?p
 
 export const SUGGESTIONS_API= "http://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&ds=yt&q="
 
+export const COMMENTS_API= " https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId="
+
+export const SEARCH_API= "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="
