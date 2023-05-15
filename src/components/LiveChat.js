@@ -26,7 +26,7 @@ const LiveChat = () => {
   }, []);
   return (
     <>
-      <div className="border border-black px-2   h-[400px] w-80 overflow-y-scroll flex flex-col-reverse">
+      <div className="border border-black px-2   h-[480px] w-80 overflow-y-scroll flex flex-col-reverse">
         {chatMessages.map((c, idx) => (
           <LiveCommentsList key={idx} comment={c.message} userName={c.name} />
         ))}

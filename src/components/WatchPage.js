@@ -8,9 +8,12 @@ import VideoDetails from "./VideoDetails";
 import Comments from "./CommentsContainer";
 import Header from "./Header";
 import LiveChat from "./LiveChat";
+import RelatedVideoCard from "./RelatedVideoCard";
+import { Link } from "react-router-dom";
 
 const WatchPage = () => {
   const [videoData, setVideoData]= useState([])
+  const [relatedVideoData, setRelatedVideoData]= useState([])
   const [commentList,setCommentList]= useState([])
 
   const [params] = useSearchParams();
@@ -29,7 +32,8 @@ const WatchPage = () => {
     
   }, []);
 
-
+  const [searchParams] = useSearchParams();
+  console.log(searchParams.get("v"));
  
 
   const getVideoDetails= async()=>{
@@ -38,6 +42,13 @@ const WatchPage = () => {
     setVideoData(json.items)
     console.log(json.items)
   }
+  const getRelatedVideoDetails= async()=>{
+    const data= await fetch(` https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&relatedToVideoId=${searchParams.get("v")}&type=video&key=`+ API_KEY )
+    const json= await data.json();
+    console.log(json.items)
+    setRelatedVideoData(json.items)
+  }
+  
 
 //   const getComments= async()=>{
 //     const data= await fetch ("https://youtube.googleapis.com/youtube/v3/comments?part=snippet&parentId=UgzDE2tasfmrYLyNkGt4AaABAg&key="+API_KEY)
@@ -46,14 +57,15 @@ const WatchPage = () => {
 //     setCommentlist(json.items)
 // }
 
-  const [searchParams] = useSearchParams();
-  console.log(searchParams.get("v"));
+  
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(closeMenu());
     getVideoDetails();
     getComments();
+    getRelatedVideoDetails();
+
   }, []);
 
   return (
@@ -63,8 +75,8 @@ const WatchPage = () => {
       <SideBar />
       <iframe
       className="px-5"
-        width="900"
-        height="400"
+        width="1200"
+        height="500"
         src={"https://www.youtube.com/embed/"+ searchParams.get("v")}
         title="YouTube video player"
         frameBorder="0"
@@ -76,12 +88,13 @@ const WatchPage = () => {
         <LiveChat/>
       </div>
     </div>
-    <div>
-      {videoData.map((data)=><VideoDetails key={data.id} videoData= {data}/>)}</div>
+    <div  className="flex">
+    <div className="w-2/3">
+      {videoData.map((data)=><VideoDetails key={data.id} videoData= {data}/>)}
       
       {/* {commentList.map((comment)=><Comments comment={comment}/>)} */}
 
-      <div>
+      <div >
         <h1 className="font-bold text-3xl m-2 p-2">Comments:</h1>
         {commentList.map((comment) => (
           <div key={comment.id} className="flex items-center m-2 p-2">
@@ -95,6 +108,14 @@ const WatchPage = () => {
             </h1>
           </div>
         ))}
+      </div>
+     </div>
+      <div>
+
+        {relatedVideoData.map((data)=> <Link  key={data.id.videoId} to={"/watch?v="+data.id.videoId}><RelatedVideoCard info={data}/>
+              </Link> )}
+      </div>
+     
       </div>
     
     </div>
