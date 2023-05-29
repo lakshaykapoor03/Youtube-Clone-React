@@ -1,11 +1,10 @@
 import React from 'react'
 
 
-const VideoCard=({info})=> {
+const VideoCardTwo=({info})=> {
   // console.log(info)
-    const {snippet, statistics}= info;
+    const {snippet}= info;
 const {channelTitle, title, thumbnails }= snippet;
-const {viewCount}= statistics
 
    
   return (
@@ -18,7 +17,6 @@ const {viewCount}= statistics
           <span className="text-xs font-medium overflow-hidden">{title}</span>
         </div>
         <span className="text-xs text-gray-600 font-normal"> {channelTitle} </span>
-        <div className="text-xs text-gray-600 font-normal"><span>{viewCount}.Views</span> . <span>minutes</span></div>
     </div>
   )
 }
@@ -31,4 +29,4 @@ const {viewCount}= statistics
 // )
 // }
 
-export default VideoCard
+export default VideoCardTwo;

@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { API_KEY, SEARCH_API } from "../utils/constants";
 import ResultCard from "./ResultCard";
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
 function SearchResults() {
   const [params] = useSearchParams();
@@ -22,13 +23,16 @@ function SearchResults() {
 
   console.log(params.get("q"));
   return (
-  <div className="flex flex-col justify-center items-center">
+  <div>
+    <Header/>
+    <div className="flex flex-col justify-center items-center">
       {
         result.map((result)=><Link to={"/watch?v="+ result.id.videoId}> <ResultCard key={result.id.videoId} result={result}/></Link>
 
 
         )
       }
+  </div>
   </div>
   )
 }
