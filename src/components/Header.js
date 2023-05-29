@@ -29,7 +29,7 @@ const Header = () => {
   };
   return (
     <>
-      <div className="flex justify-between mx-5 items-center">
+      <div className="w-full flex justify-between mt-0 mx-5 items-center fixed bg-white">
         <div className="flex items-center w-56">
           <span className="cursor-pointer" onClick={() => toggleMenuHandler()}>
             <i className="fa-solid fa-bars"></i>

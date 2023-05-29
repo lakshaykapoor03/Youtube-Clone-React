@@ -11,12 +11,13 @@ import VideoCardTwo from "./VideoCard2";
 function VideoContainer() {
   const [videos, setVideos] = useState([]);
   const [results, setResults] = useState([]);
+  const [page, setPage] = useState(1);
 
 
   const videoCardData = async () => {
     const data = await fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=50&chart=mostPopular&regionCode=IN&key=AIzaSyAWWnH9A63525B5szFKwle0bcyLAHZjmCU");
     const json = await data.json();
-    setVideos(json.items);
+    setVideos((prev)=>[...prev,...json.items]);
     console.log(json.items);
   };
 
@@ -28,6 +29,21 @@ function VideoContainer() {
     setVideos()
   };
 
+  const handleInfiniteScroll=async()=>{
+// console.log("first")
+// console.log("scroll height",document.documentElement.scrollHeight)
+// console.log("window height",window.innerHeight)
+// console.log("scroll top",document.documentElement.scrollTop)
+try{
+if ( window.innerHeight+document.documentElement.scrollTop+1>=document.documentElement.scrollHeight){
+  setPage((prev)=> prev+1)
+}
+}
+catch{
+
+}
+  }
+
 console.log(results)
 
 
@@ -35,6 +51,10 @@ console.log(results)
 
   useEffect(() => {
     videoCardData();
+    
+  }, [page]);
+  useEffect(() => {
+    window.addEventListener('scroll',handleInfiniteScroll)
   }, []);
 
   // if (!isMenuOpen) return null;
