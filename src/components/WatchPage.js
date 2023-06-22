@@ -84,12 +84,12 @@ const WatchPage = () => {
         allowFullScreen
       
       ></iframe>
-      <div className="">
+      <div className="hidden md:block">
         <LiveChat/>
       </div>
     </div>
-    <div  className="flex">
-    <div className="w-2/3">
+    <div  className="flex md:flex-row flex-col">
+    <div className=" md:w-2/3">
       {videoData.map((data)=><VideoDetails key={data.id} videoData= {data}/>)}
       
       {/* {commentList.map((comment)=><Comments comment={comment}/>)} */}

@@ -25,7 +25,7 @@ function SearchResults() {
   return (
   <div>
     <Header/>
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col pt-24 justify-center items-center">
       {
         result.map((result)=><Link to={"/watch?v="+ result.id.videoId}> <ResultCard key={result.id.videoId} result={result}/></Link>
 

@@ -5,10 +5,11 @@ const ResultCard = ({result}) => {
     const {channelTitle, title, description, thumbnails
     }= result.snippet;
   return (
-    <div className=" flex justify-center p-2 m-4 shadow-sm rounded-md">
+    <div className=" flex justify-center items-center p-2 m-4  shadow-sm rounded-md">
       <div className="mx-4">
         {" "}
         <img
+        className="rounded-md"
           src={thumbnails.medium.url}
           alt=""
         />

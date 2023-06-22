@@ -48,7 +48,7 @@ const Header = () => {
           <div className=" flex items-center">
             <input
               placeholder="Search"
-              className=" rounded-l-full w-[15rem] md:w-[25rem] p-2 border outline-none "
+              className=" rounded-l-full w-[10rem] md:w-[25rem] p-2 border outline-none "
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -60,7 +60,7 @@ const Header = () => {
               <i className="fa-solid fa-search border text-base   rounded-r-full p-2 px-5"></i>
             </span>
             <span>
-              <i className="fa-solid fa-microphone ml-4"></i>
+              <i className=" hidden md:block fa-solid fa-microphone ml-4"></i>
             </span>
           </div>
           {showSuggestions && (
@@ -82,13 +82,13 @@ const Header = () => {
         </div>
         <div className="flex mx-2">
           <span>
-            <i className="fa-solid fa-video mx-2"></i>
+            <i className=" hidden md:block fa-solid fa-video mx-2"></i>
           </span>
           <span>
-            <i className="fa-regular fa-bell mx-2"></i>
+            <i className="hidden md:block fa-regular fa-bell mx-2"></i>
           </span>
           <img
-            className="w-7 rounded-full mx-2"
+            className=" w-7 rounded-full mx-2"
             src="https://yt3.ggpht.com/yti/AHXOFjXzYc-9Tkv7Sg-wO65yuoEhXM1J2pQxdL4jFI7zJHs=s88-c-k-c0x00ffffff-no-rj-mo"
             alt=""
           />
