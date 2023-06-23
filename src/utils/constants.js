@@ -1,6 +1,6 @@
 
 export const LIVE_CHAT_COUNT= 11;
-export const API_KEY= "AIzaSyCor9Au-J5CwMUbHB66mSZB2S8oirqzzt0"
+export const API_KEY= "AIzaSyBnEENq8d1juSru71irRd77FBMf6j9y7tc"
 export const YOUTUBE_API= "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=50&chart=mostPopular&regionCode=IN&key="+API_KEY;
 
 export const VIDEO_DATA_API= "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc%2Cc0KYU2j0TM4%2CeIho2S0ZahI&key="+ API_KEY;

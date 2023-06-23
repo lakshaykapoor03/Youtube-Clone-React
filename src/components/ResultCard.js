@@ -1,6 +1,7 @@
 import React from "react";
 
 const ResultCard = ({result}) => {
+  console.log( result.snippet)
 
     const {channelTitle, title, description, thumbnails
     }= result.snippet;
