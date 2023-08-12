@@ -6,6 +6,7 @@ import VideoContainer from './components/VideoContainer';
 import WatchPage from './components/WatchPage';
 import Body from './components/Body';
 import store from './utils/store';
+import Signup from './components/Signup';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import SearchResults from './components/SearchResults';
 
@@ -16,6 +17,10 @@ const appRouter=createBrowserRouter([{
     {
     path:"/",
     element: <VideoContainer/>
+    },
+    {
+    path:"/signup",
+    element: <Signup/>
     },
     {
       path:"/header",

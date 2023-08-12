@@ -42,12 +42,13 @@ const WatchPage = () => {
     setVideoData(json.items)
     console.log(json.items)
   }
-  const getRelatedVideoDetails= async()=>{
-    const data= await fetch(` https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&relatedToVideoId=${searchParams.get("v")}&type=video&key=`+ API_KEY )
-    const json= await data.json();
-    console.log(json.items)
-    setRelatedVideoData(json.items)
-  }
+  // const getRelatedVideoDetails= async()=>{
+  //   const data= await fetch(` https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&relatedToVideoId=${searchParams.get("v")}&type=video&key=`+ API_KEY )
+  // const data= await fetch(` https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=AIzaSyBKT8g0dCDyJmvxO5IPxAcpbJTGuUy1rZU` )
+  //   const json= await data.json();
+  //   console.log(json.items)
+  //   setRelatedVideoData(json.items)
+  // }
   
 
 //   const getComments= async()=>{
@@ -64,7 +65,7 @@ const WatchPage = () => {
     dispatch(closeMenu());
     getVideoDetails();
     getComments();
-    getRelatedVideoDetails();
+    // getRelatedVideoDetails();
 
   }, []);
 
@@ -110,11 +111,11 @@ const WatchPage = () => {
         ))}
       </div>
      </div>
-      <div>
+      {/* <div>
 
         {relatedVideoData.map((data)=> <Link  key={data.id.videoId} to={"/watch?v="+data.id.videoId}><RelatedVideoCard info={data}/>
               </Link> )}
-      </div>
+      </div> */}
      
       </div>
     
